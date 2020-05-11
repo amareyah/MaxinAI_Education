@@ -1,0 +1,31 @@
+"""
+postgresql://postgres:grunger@localhost:5432/postgres
+
+    1           2           3               4      5     6
+ 
+1 - tells that sqlalchemy have to communicate with postgre database type and shoudl use according protocol.
+2 - username for postgres database server
+3 - password for postgres database server
+4 - url where to reach the database server
+5 - port number of where database server lisens to
+6 - name of database to connect with
+"""
+
+docker run --name my-postgres -p 5432:5432 -e POSTGRES_PASSWORD=grunger -d postgres:12
+
+docker run --link my-postgres:db -p 8080:8080 adminer -d
+
+
+postgresql://postgres:grunger@localhost:5432/postgres
+
+create table tasks (
+    id serial PRIMARY KEY,
+    title varchar, 
+    assign varchar
+);
+
+
+    web:
+        image: adminer
+        ports: 
+        - 8080:8080
