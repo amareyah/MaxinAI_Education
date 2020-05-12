@@ -4,5 +4,5 @@
 **.ipynb_checkpoints/
 **.pyc
 *.local.ipynb
-
+mnistdata/
 .DS_Store
