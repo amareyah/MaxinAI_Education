@@ -1,16 +1,30 @@
-version: '3.1'
+version: "3.1"
 
 services:
-    db:
+    dbase:
         image: postgres:12
         ports:
-        - "5432:5432"
-        environment: 
-        - POSTGRES_PASSWORD=grunger
+            - "5432:5432"
+        environment:
+            - POSTGRES_PASSWORD=grunger
         container_name: my-postgres
 
     adm:
         image: adminer
-        ports: 
-        - 8080:8080
+        depends_on:
+            - dbase
+        ports:
+            - 8080:8080
         container_name: my-adminer
+
+    api:
+        build:
+            context: .
+        image: amareyah/webapp:01
+        depends_on:
+            - dbase
+        ports:
+            - "5000:5000"
+        container_name: web_api
+        environment:
+            - DB_URI=postgresql://postgres:grunger@dbase/postgres

@@ -23,3 +23,17 @@ create table tasks (
     title varchar, 
     assign varchar
 );
+
+
+
+    api:
+        build: 
+            context: .
+        image: amareyah/webapp:01
+        depends_on: 
+        - dbase
+        ports: 
+        - "5000:5000"
+        container_name: crud_api
+        environment:
+        - DB_URI=postgresql://postgres:grunger@db/postgres
