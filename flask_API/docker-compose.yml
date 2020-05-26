@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.8"
 
 services:
     dbase:
@@ -25,6 +25,15 @@ services:
             - dbase
         ports:
             - "5000:5000"
-        container_name: web_api
+        container_name: webapp
         environment:
             - DB_URI=postgresql://postgres:grunger@dbase/postgres
+        volumes:
+            #- type: bind
+              #source: ./uploads
+              #target: /usr/src/webapp/uploads/
+            - type: volume
+              source: my_volume
+              target: /usr/src/webapp/uploads/
+volumes:
+    my_volume:
