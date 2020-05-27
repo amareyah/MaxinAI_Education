@@ -1,0 +1,17 @@
+FROM python:latest
+
+RUN mkdir -p /usr/src/webapp
+
+WORKDIR /usr/src/webapp
+
+RUN mkdir -p uploads/images uploads/texts
+
+COPY requirements.txt app.py ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+
+VOLUME [ "./uploads/" ]
