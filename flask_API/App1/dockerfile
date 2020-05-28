@@ -1,17 +1,15 @@
 FROM python:latest
 
-RUN mkdir -p /usr/src/webapp
+RUN mkdir -p /usr/src/app1
 
-WORKDIR /usr/src/webapp
+WORKDIR /usr/src/app1
 
-RUN mkdir -p uploads/images uploads/texts
+RUN mkdir -p ./uploads/
 
-COPY requirements.txt app.py ./
+COPY requirements.txt app1.py ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 5001
 
-CMD ["python", "app.py"]
-
-VOLUME [ "./uploads/" ]
+CMD ["python", "app1.py"]

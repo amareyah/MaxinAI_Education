@@ -17,23 +17,41 @@ services:
             - 8080:8080
         container_name: my-adminer
 
-    api:
+    api1:
         build:
-            context: .
-        image: amareyah/webapp:01
+            context: ./App1
+        image: amareyah/webapp1:01
         depends_on:
             - dbase
         ports:
-            - "5000:5000"
-        container_name: webapp
+            - "5001:5001"
+        container_name: app1
         environment:
             - DB_URI=postgresql://postgres:grunger@dbase/postgres
         volumes:
             #- type: bind
-              #source: ./uploads
-              #target: /usr/src/webapp/uploads/
+            #source: ./uploads
+            #target: /usr/src/webapp/uploads/
             - type: volume
               source: my_volume
-              target: /usr/src/webapp/uploads/
+              target: /usr/src/app1/uploads/
+
+    api2:
+        build:
+            context: ./App2
+        image: amareyah/webapp2:01
+        depends_on:
+            - api1
+        ports:
+            - "5002:5002"
+        container_name: app2
+        volumes:
+            #- type: bind
+            #source: ./uploads
+            #target: /usr/src/webapp/uploads/
+            - type: volume
+              source: my_volume
+              target: /usr/src/app2/resources/
+
 volumes:
     my_volume:

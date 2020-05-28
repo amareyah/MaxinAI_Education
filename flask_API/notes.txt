@@ -13,7 +13,7 @@ postgresql://postgres:grunger@localhost:5432/postgres
 
 docker run --name my-postgres -p 5432:5432 -e POSTGRES_PASSWORD=grunger -d postgres:12
 
-docker run --link my-postgres:db -p 8080:8080 -d adminer
+docker-compose up -d
 
 
 postgresql://postgres:grunger@localhost:5432/postgres

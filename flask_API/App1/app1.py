@@ -105,12 +105,12 @@ def update_task_by_id(task_id):
 @app.route("/upload", methods=["POST"])
 def upload_files():
     f = request.files['image']
-    f.save('./uploads/images/' + secure_filename(f.filename))
+    f.save('./uploads/' + secure_filename(f.filename))
     f = request.files['text_file']
-    f.save('./uploads/texts/' + secure_filename(f.filename))
+    f.save('./uploads/' + secure_filename(f.filename))
 
     return {'message': 'Files saved.'}
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
