@@ -45,6 +45,8 @@ services:
         ports:
             - "5002:5002"
         container_name: app2
+        environment:
+            - TZ=Asia/Tbilisi
         volumes:
             #- type: bind
             #source: ./uploads
